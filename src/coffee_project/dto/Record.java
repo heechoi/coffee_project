@@ -65,5 +65,10 @@ public class Record {
 				margin);
 	}
 
+
+	public Object[] toArray() {
+		return new Object[]{pdNo,pdName,price,amount,margin};
+	}
+
 	
 }

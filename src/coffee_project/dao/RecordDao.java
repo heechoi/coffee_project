@@ -1,12 +1,12 @@
 package coffee_project.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import coffee_project.dto.Code;
 import coffee_project.dto.Record;
 import coffee_project.jdbc.DBCon;
 
@@ -95,6 +95,11 @@ public class RecordDao implements SqlDao<Record> {
 			}
 		}
 		return lists;
+	}
+
+	@Override
+	public List<Code> selectItemByAllNo() throws SQLException {
+		return null;
 	}
 
 }

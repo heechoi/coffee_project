@@ -8,6 +8,17 @@ public class Sale {
 	private int mgRate;
 	
 	public Sale() {}
+	
+	
+	public Sale(String saleCd, int supplyPrice, int surTax, int salePrice, int mgRate) {
+		super();
+		this.saleCd = saleCd;
+		this.supplyPrice = supplyPrice;
+		this.surTax = surTax;
+		this.salePrice = salePrice;
+		this.mgRate = mgRate;
+	}
+
 
 	public String getSaleCd() {
 		return saleCd;

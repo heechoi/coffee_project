@@ -27,7 +27,6 @@ public class SpinnerComponent extends JPanel {
 		
 	}
 	
-	
 	public JSpinner getComponent(){
 		return spinner;
 	}

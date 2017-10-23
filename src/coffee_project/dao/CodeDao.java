@@ -55,21 +55,6 @@ public class CodeDao implements SqlDao<Code> {
 		}
 	}
 
-	@Override
-	public Code selectItemByNo(Code item) throws SQLException {
-		String sql = "select codeid,codename from code where codeid=?";
-		Code code=null;
-		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql)){
-				pstmt.setString(1, item.getCodeId());
-				try(ResultSet rs=pstmt.executeQuery();){
-					if(rs.next()){
-						code = getCode(rs);
-					}
-				}
-		}
-		return code;
-	}
-
 	private Code getCode(ResultSet rs) throws SQLException {
 		String codeId = rs.getString(1);
 		String codeName = rs.getString(2);
@@ -88,5 +73,20 @@ public class CodeDao implements SqlDao<Code> {
 		}
 		return lists;
 	}
-
+	
+	public List<Code> selectItemByAllNo() throws SQLException{
+		List<Code> lists = new ArrayList<>();
+		String sql = "select codeid from code";
+		try(PreparedStatement pstmt = DBCon.getInstance().getConnection().prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();){
+			while(rs.next()){
+				lists.add(getCode(rs));
+			}
+		}
+		return lists;
+	}
+	@Override
+	public Code selectItemByNo(Code item) throws SQLException {
+		return null;
+	}
 }

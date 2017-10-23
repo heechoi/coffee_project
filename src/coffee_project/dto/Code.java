@@ -34,5 +34,10 @@ public class Code {
 	public String toString() {
 		return String.format("%s %s", codeId, codeName);
 	}
+
+
+	public Object[] toArray() {
+		return new Object[]{codeId,codeName};
+	}
 	
 }
