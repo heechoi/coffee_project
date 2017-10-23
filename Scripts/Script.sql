@@ -69,14 +69,6 @@ for each row begin
 end 
 delimiter ;
 
--- 기본 데이터 입력 
-insert into record values("A001","아메리카노",4500,150,10),
-						("A002","카푸치노",3800,140,15),
-						("B001","딸기쉐이크",5200,250,12),
-						("B002","후르츠와인",4300,110,11);
-						
--- 판매가격순 정렬
-select (select count(*)+1 from sale r1 where r1.saleprice > saleprice) rank,
-	record.pdno pdno, record.pdname pdname, saleprice, surtax, supplyprice, mgrate from sale 
-	inner join sale on 
+
+-- test
 
