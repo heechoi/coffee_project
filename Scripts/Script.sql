@@ -1,7 +1,8 @@
 show databases;
 
-show tables;
+use product_project;
 
+show tables;
 
 select * from code;
 select * from sale;		  
@@ -17,16 +18,6 @@ for each row begin
 end 
 delimiter ;
 
--- 입력데이터를 업데이트 했을 때 판매 기록 데이터가 업데이트 되는 것.
-delimiter $$
-create trigger tri_record_update_sale
-after update on record
-for each row begin
-	update sale
-	set salecd = new.pdno, saleprice = new.price*new.amount, surtax = ceiling(saleprice/11), supplyprice=saleprice-surtax, mgrate=round(supplyprice*(new.margin*0.01))
-	where sale.salecd=old.pdno;
-end 
-delimiter ;
 
 -- code를 업데이트 했을때 record와 sale이 업데이트 
 delimiter $$
@@ -44,5 +35,48 @@ for each row begin
 end 
 delimiter ;
 
+-- code를 삭제했을때 record와 sale도 함께 삭제
+delimiter $$
+create trigger tri_code_delete_record_sale
+after delete on code
+for each row begin
+	delete from record
+	where record.pdno = old.codeid;
+	
+	delete from sale
+	where sale.salecd = old.codeid;
+end 
+delimiter ;
 
-drop trigger tri_code_update_record_sale;
+-- 입력데이터를 업데이트 했을 때 판매 기록 데이터가 업데이트 되는 것.
+delimiter $$
+create trigger tri_record_update_sale
+after update on record
+for each row begin
+	update sale
+	set salecd = new.pdno, saleprice = new.price*new.amount, surtax = ceiling(saleprice/11), supplyprice=saleprice-surtax, mgrate=round(supplyprice*(new.margin*0.01))
+	where sale.salecd=old.pdno;
+end 
+delimiter ;
+
+-- record가 삭제 되었을때 sale의 데이터도 함께 삭제
+delimiter $$
+create trigger tri_record_delete_sale
+after delete on record
+for each row begin
+	delete from sale
+	where sale.salecd = old.pdno;
+end 
+delimiter ;
+
+-- 기본 데이터 입력 
+insert into record values("A001","아메리카노",4500,150,10),
+						("A002","카푸치노",3800,140,15),
+						("B001","딸기쉐이크",5200,250,12),
+						("B002","후르츠와인",4300,110,11);
+						
+-- 판매가격순 정렬
+select (select count(*)+1 from sale r1 where r1.saleprice > saleprice) rank,
+	record.pdno pdno, record.pdname pdname, saleprice, surtax, supplyprice, mgrate from sale 
+	inner join sale on 
+

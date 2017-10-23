@@ -7,6 +7,13 @@ public class Code {
 	
 	public Code() {}
 	
+	
+	public Code(String codeId, String codeName) {
+		this.codeId = codeId;
+		this.codeName = codeName;
+	}
+
+
 	public String getCodeId() {
 		return codeId;
 	}

@@ -1,19 +1,29 @@
 package coffee_project.dto;
 
 public class Record {
-	private Code pdNo;
+	private String pdNo;
 	private String pdName;
 	private int price;
 	private int amount;
 	private int margin;
 	
 	public Record() {}
+	
+	
+	public Record(String pdNo, String pdName, int price, int amount, int margin) {
+		this.pdNo = pdNo;
+		this.pdName = pdName;
+		this.price = price;
+		this.amount = amount;
+		this.margin = margin;
+	}
 
-	public Code getPdNo() {
+
+	public String getPdNo() {
 		return pdNo;
 	}
 
-	public void setPdNo(Code pdNo) {
+	public void setPdNo(String pdNo) {
 		this.pdNo = pdNo;
 	}
 
@@ -51,10 +61,9 @@ public class Record {
 
 	@Override
 	public String toString() {
-		return String.format(" %s %s %s %s %s", pdNo, pdName, price, amount,margin);
+		return String.format("Record [pdNo=%s, pdName=%s, price=%s, amount=%s, margin=%s]", pdNo, pdName, price, amount,
+				margin);
 	}
 
-	
-	
 	
 }
