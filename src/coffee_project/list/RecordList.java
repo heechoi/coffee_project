@@ -2,6 +2,8 @@ package coffee_project.list;
 
 import java.util.List;
 
+import javax.swing.SwingConstants;
+
 import coffee_project.dto.Record;
 import coffee_project.service.RecordService;
 
@@ -26,6 +28,14 @@ public class RecordList extends TableList {
 			datas[i] = lists.get(i).toArray();
 		}
 		return datas;
+	}
+
+	@Override
+	protected void setAlignWidth() {
+		setCellWidth(50,100,50,100,50);
+		setAlign(SwingConstants.CENTER, 0,1);
+		setAlign(SwingConstants.RIGHT, 2,3,4);
+		
 	}
 	
 	

@@ -2,6 +2,8 @@ package coffee_project.list;
 
 import java.util.List;
 
+import javax.swing.SwingConstants;
+
 import coffee_project.dto.Code;
 import coffee_project.service.CodeService;
 
@@ -27,6 +29,12 @@ public class CodeList extends TableList {
 			datas[i] = lists.get(i).toArray();
 		}
 		return datas;
+	}
+
+	@Override
+	protected void setAlignWidth() {
+		setCellWidth(50,50);
+		setAlign(SwingConstants.CENTER,0,1);
 	}
 
 }

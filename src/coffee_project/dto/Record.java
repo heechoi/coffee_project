@@ -67,7 +67,7 @@ public class Record {
 
 
 	public Object[] toArray() {
-		return new Object[]{pdNo,pdName,price,amount,margin};
+		return new Object[]{pdNo,pdName,String.format("%,d", price),amount,margin};
 	}
 
 	

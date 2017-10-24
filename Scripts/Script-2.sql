@@ -70,19 +70,4 @@ insert into record values("A001","아메리카노",4500,150,10),
 						("A002","카푸치노",3800,140,15),
 						("B001","딸기쉐이크",5200,250,12),
 						("B002","후르츠와인",4300,110,11);
-
--- rank(판매순위)
-select (select count(*)+1 from sale where saleprice > s1.saleprice) rank, 
- record.pdno pdno, record.pdname pdname, record.price price, record.amount, s1.supplyprice,  s1.surtax,  s1.saleprice, record.margin,  s1.mgrate from sale as s1
- inner join record on s1.salecd = record.pdno order by rank; 
-
- -- rank(마진율)
- select (select count(*)+1 from sale where mgrate > s1.mgrate) rank, 
- record.pdno pdno, record.pdname pdname, record.price price, record.amount, s1.supplyprice,  s1.surtax,  s1.saleprice, record.margin, s1.mgrate from sale as s1
- inner join record on s1.salecd = record.pdno order by rank; 
- 
- select * from code;
- select * from record;
- select * from sale;
- select * from rankPrice;
- select * from rankMargin;
+select * from rankPrice;						

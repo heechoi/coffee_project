@@ -15,10 +15,10 @@ public class ComboBoxComponent extends JPanel {
 
 	private JComboBox<String> comboBox;
 
-	public ComboBoxComponent() {
+	public ComboBoxComponent(String title) {
 		setLayout(new GridLayout(0, 2, 10, 0));
 		
-		JLabel lblCombo = new JLabel("New label");
+		JLabel lblCombo = new JLabel(title);
 		lblCombo.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblCombo);
 		
